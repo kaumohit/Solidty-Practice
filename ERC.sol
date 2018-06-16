@@ -18,10 +18,10 @@ contract ERC20 is ERC
 {
     string public constant name = "Monty Token";
     string public constant symbol = "MTT";
-    uint public constant maxcoins = 2000000000;
+    uint public constant maxcoins = 200000;
     address owner;
     uint starttime;
-    uint constant timelimit=3 minutes;
+    uint constant timelimit=10 minutes;
     uint supply;
     mapping(address=>uint) balancemap;
     mapping(address=>mapping(address=>uint)) aprrovedmoney;
@@ -52,8 +52,8 @@ contract ERC20 is ERC
     
     function () public payable {
         address(this).send(msg.value);
-        balancemap[msg.sender]= msg.value;
-        supply+=msg.value;
+        balancemap[msg.sender]= msg.value/1000;
+        supply+=msg.value/1000;
     }        
     
     function transfer(address to,uint value) checkTime public returns(bool) {
